@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExitTicketRouteImport } from './routes/exit-ticket'
+import { Route as ObserverSheetRouteImport } from './routes/observer-sheet'
+import { Route as PrincipleCardsRouteImport } from './routes/principle-cards'
+import { Route as SeatCardsRouteImport } from './routes/seat-cards'
+import { Route as SituationCardsRouteImport } from './routes/situation-cards'
+import { Route as TrainerKeyRouteImport } from './routes/trainer-key'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExitTicketRoute = ExitTicketRouteImport.update({
+  id: '/exit-ticket',
+  path: '/exit-ticket',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObserverSheetRoute = ObserverSheetRouteImport.update({
+  id: '/observer-sheet',
+  path: '/observer-sheet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrincipleCardsRoute = PrincipleCardsRouteImport.update({
+  id: '/principle-cards',
+  path: '/principle-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeatCardsRoute = SeatCardsRouteImport.update({
+  id: '/seat-cards',
+  path: '/seat-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SituationCardsRoute = SituationCardsRouteImport.update({
+  id: '/situation-cards',
+  path: '/situation-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrainerKeyRoute = TrainerKeyRouteImport.update({
+  id: '/trainer-key',
+  path: '/trainer-key',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/exit-ticket': typeof ExitTicketRoute
+  '/observer-sheet': typeof ObserverSheetRoute
+  '/principle-cards': typeof PrincipleCardsRoute
+  '/seat-cards': typeof SeatCardsRoute
+  '/situation-cards': typeof SituationCardsRoute
+  '/trainer-key': typeof TrainerKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/exit-ticket': typeof ExitTicketRoute
+  '/observer-sheet': typeof ObserverSheetRoute
+  '/principle-cards': typeof PrincipleCardsRoute
+  '/seat-cards': typeof SeatCardsRoute
+  '/situation-cards': typeof SituationCardsRoute
+  '/trainer-key': typeof TrainerKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/exit-ticket': typeof ExitTicketRoute
+  '/observer-sheet': typeof ObserverSheetRoute
+  '/principle-cards': typeof PrincipleCardsRoute
+  '/seat-cards': typeof SeatCardsRoute
+  '/situation-cards': typeof SituationCardsRoute
+  '/trainer-key': typeof TrainerKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/exit-ticket'
+    | '/observer-sheet'
+    | '/principle-cards'
+    | '/seat-cards'
+    | '/situation-cards'
+    | '/trainer-key'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/exit-ticket'
+    | '/observer-sheet'
+    | '/principle-cards'
+    | '/seat-cards'
+    | '/situation-cards'
+    | '/trainer-key'
+  id:
+    | '__root__'
+    | '/'
+    | '/exit-ticket'
+    | '/observer-sheet'
+    | '/principle-cards'
+    | '/seat-cards'
+    | '/situation-cards'
+    | '/trainer-key'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExitTicketRoute: typeof ExitTicketRoute
+  ObserverSheetRoute: typeof ObserverSheetRoute
+  PrincipleCardsRoute: typeof PrincipleCardsRoute
+  SeatCardsRoute: typeof SeatCardsRoute
+  SituationCardsRoute: typeof SituationCardsRoute
+  TrainerKeyRoute: typeof TrainerKeyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/exit-ticket': {
+      id: '/exit-ticket'
+      path: '/exit-ticket'
+      fullPath: '/exit-ticket'
+      preLoaderRoute: typeof ExitTicketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/observer-sheet': {
+      id: '/observer-sheet'
+      path: '/observer-sheet'
+      fullPath: '/observer-sheet'
+      preLoaderRoute: typeof ObserverSheetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/principle-cards': {
+      id: '/principle-cards'
+      path: '/principle-cards'
+      fullPath: '/principle-cards'
+      preLoaderRoute: typeof PrincipleCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seat-cards': {
+      id: '/seat-cards'
+      path: '/seat-cards'
+      fullPath: '/seat-cards'
+      preLoaderRoute: typeof SeatCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/situation-cards': {
+      id: '/situation-cards'
+      path: '/situation-cards'
+      fullPath: '/situation-cards'
+      preLoaderRoute: typeof SituationCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trainer-key': {
+      id: '/trainer-key'
+      path: '/trainer-key'
+      fullPath: '/trainer-key'
+      preLoaderRoute: typeof TrainerKeyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExitTicketRoute: ExitTicketRoute,
+  ObserverSheetRoute: ObserverSheetRoute,
+  PrincipleCardsRoute: PrincipleCardsRoute,
+  SeatCardsRoute: SeatCardsRoute,
+  SituationCardsRoute: SituationCardsRoute,
+  TrainerKeyRoute: TrainerKeyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
