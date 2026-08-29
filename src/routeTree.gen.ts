@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ObserverSheetRouteImport } from './routes/observer-sheet'
 import { Route as PrincipleCardsRouteImport } from './routes/principle-cards'
 import { Route as SeatCardsRouteImport } from './routes/seat-cards'
 import { Route as SituationCardsRouteImport } from './routes/situation-cards'
@@ -17,6 +18,11 @@ import { Route as SituationCardsRouteImport } from './routes/situation-cards'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObserverSheetRoute = ObserverSheetRouteImport.update({
+  id: '/observer-sheet',
+  path: '/observer-sheet',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrincipleCardsRoute = PrincipleCardsRouteImport.update({
@@ -37,12 +43,14 @@ const SituationCardsRoute = SituationCardsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/observer-sheet': typeof ObserverSheetRoute
   '/principle-cards': typeof PrincipleCardsRoute
   '/seat-cards': typeof SeatCardsRoute
   '/situation-cards': typeof SituationCardsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/observer-sheet': typeof ObserverSheetRoute
   '/principle-cards': typeof PrincipleCardsRoute
   '/seat-cards': typeof SeatCardsRoute
   '/situation-cards': typeof SituationCardsRoute
@@ -50,20 +58,38 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/observer-sheet': typeof ObserverSheetRoute
   '/principle-cards': typeof PrincipleCardsRoute
   '/seat-cards': typeof SeatCardsRoute
   '/situation-cards': typeof SituationCardsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/principle-cards' | '/seat-cards' | '/situation-cards'
+  fullPaths:
+    | '/'
+    | '/observer-sheet'
+    | '/principle-cards'
+    | '/seat-cards'
+    | '/situation-cards'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/principle-cards' | '/seat-cards' | '/situation-cards'
-  id: '__root__' | '/' | '/principle-cards' | '/seat-cards' | '/situation-cards'
+  to:
+    | '/'
+    | '/observer-sheet'
+    | '/principle-cards'
+    | '/seat-cards'
+    | '/situation-cards'
+  id:
+    | '__root__'
+    | '/'
+    | '/observer-sheet'
+    | '/principle-cards'
+    | '/seat-cards'
+    | '/situation-cards'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ObserverSheetRoute: typeof ObserverSheetRoute
   PrincipleCardsRoute: typeof PrincipleCardsRoute
   SeatCardsRoute: typeof SeatCardsRoute
   SituationCardsRoute: typeof SituationCardsRoute
@@ -76,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/observer-sheet': {
+      id: '/observer-sheet'
+      path: '/observer-sheet'
+      fullPath: '/observer-sheet'
+      preLoaderRoute: typeof ObserverSheetRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/principle-cards': {
@@ -104,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ObserverSheetRoute: ObserverSheetRoute,
   PrincipleCardsRoute: PrincipleCardsRoute,
   SeatCardsRoute: SeatCardsRoute,
   SituationCardsRoute: SituationCardsRoute,
