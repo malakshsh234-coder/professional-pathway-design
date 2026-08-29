@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SeatCardsRouteImport } from './routes/seat-cards'
+import { Route as SituationCardsRouteImport } from './routes/situation-cards'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const SeatCardsRoute = SeatCardsRouteImport.update({
   path: '/seat-cards',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SituationCardsRoute = SituationCardsRouteImport.update({
+  id: '/situation-cards',
+  path: '/situation-cards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/seat-cards': typeof SeatCardsRoute
+  '/situation-cards': typeof SituationCardsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/seat-cards': typeof SeatCardsRoute
+  '/situation-cards': typeof SituationCardsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/seat-cards': typeof SeatCardsRoute
+  '/situation-cards': typeof SituationCardsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/seat-cards'
+  fullPaths: '/' | '/seat-cards' | '/situation-cards'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/seat-cards'
-  id: '__root__' | '/' | '/seat-cards'
+  to: '/' | '/seat-cards' | '/situation-cards'
+  id: '__root__' | '/' | '/seat-cards' | '/situation-cards'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SeatCardsRoute: typeof SeatCardsRoute
+  SituationCardsRoute: typeof SituationCardsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SeatCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/situation-cards': {
+      id: '/situation-cards'
+      path: '/situation-cards'
+      fullPath: '/situation-cards'
+      preLoaderRoute: typeof SituationCardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SeatCardsRoute: SeatCardsRoute,
+  SituationCardsRoute: SituationCardsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
