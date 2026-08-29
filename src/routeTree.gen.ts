@@ -15,6 +15,7 @@ import { Route as ObserverSheetRouteImport } from './routes/observer-sheet'
 import { Route as PrincipleCardsRouteImport } from './routes/principle-cards'
 import { Route as SeatCardsRouteImport } from './routes/seat-cards'
 import { Route as SituationCardsRouteImport } from './routes/situation-cards'
+import { Route as TrainerKeyRouteImport } from './routes/trainer-key'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const SituationCardsRoute = SituationCardsRouteImport.update({
   path: '/situation-cards',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrainerKeyRoute = TrainerKeyRouteImport.update({
+  id: '/trainer-key',
+  path: '/trainer-key',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/principle-cards': typeof PrincipleCardsRoute
   '/seat-cards': typeof SeatCardsRoute
   '/situation-cards': typeof SituationCardsRoute
+  '/trainer-key': typeof TrainerKeyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/principle-cards': typeof PrincipleCardsRoute
   '/seat-cards': typeof SeatCardsRoute
   '/situation-cards': typeof SituationCardsRoute
+  '/trainer-key': typeof TrainerKeyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/principle-cards': typeof PrincipleCardsRoute
   '/seat-cards': typeof SeatCardsRoute
   '/situation-cards': typeof SituationCardsRoute
+  '/trainer-key': typeof TrainerKeyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/principle-cards'
     | '/seat-cards'
     | '/situation-cards'
+    | '/trainer-key'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/principle-cards'
     | '/seat-cards'
     | '/situation-cards'
+    | '/trainer-key'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/principle-cards'
     | '/seat-cards'
     | '/situation-cards'
+    | '/trainer-key'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   PrincipleCardsRoute: typeof PrincipleCardsRoute
   SeatCardsRoute: typeof SeatCardsRoute
   SituationCardsRoute: typeof SituationCardsRoute
+  TrainerKeyRoute: typeof TrainerKeyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SituationCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trainer-key': {
+      id: '/trainer-key'
+      path: '/trainer-key'
+      fullPath: '/trainer-key'
+      preLoaderRoute: typeof TrainerKeyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrincipleCardsRoute: PrincipleCardsRoute,
   SeatCardsRoute: SeatCardsRoute,
   SituationCardsRoute: SituationCardsRoute,
+  TrainerKeyRoute: TrainerKeyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
